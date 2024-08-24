@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "668021446319",
+    "project_id": "nerd-studio-c4bf2",
+    "storage_bucket": "nerd-studio-c4bf2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:668021446319:android:67c20e583c0e01d3f6a65a",
+        "android_client_info": {
+          "package_name": "com.example.nerd_studio"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoHbQCK5BWpwJQ2IJzLI33f8iMqb1hrXg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
