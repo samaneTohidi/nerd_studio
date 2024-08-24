@@ -6,12 +6,13 @@ part 'local_database.g.dart';
 
 @DataClassName('UserData')
 class Users extends Table {
-  TextColumn get id => text()();
+  TextColumn get userId => text()();
   TextColumn get name => text().withLength(min: 1, max: 50)();
   TextColumn get email => text().withLength(min: 5, max: 100)();
-
+  TextColumn get passwordHash => text()();
+  TextColumn get profilePictureUrl => text()();
   @override
-  Set<Column> get primaryKey => {id};
+  Set<Column> get primaryKey => {userId};
 }
 
 @DriftDatabase(tables: [Users])

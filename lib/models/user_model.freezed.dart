@@ -20,11 +20,16 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$UserModel {
-  String get userId => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   String get email => throw _privateConstructorUsedError;
-  String get passwordHash => throw _privateConstructorUsedError;
-  String get profilePictureUrl => throw _privateConstructorUsedError;
+  String get username => throw _privateConstructorUsedError;
+  String get firstName => throw _privateConstructorUsedError;
+  String get lastName => throw _privateConstructorUsedError;
+  bool get isActive => throw _privateConstructorUsedError;
+  DateTime get dateJoined => throw _privateConstructorUsedError;
+  String? get phoneNumber => throw _privateConstructorUsedError;
+  String? get description => throw _privateConstructorUsedError;
+  bool? get isVerified => throw _privateConstructorUsedError;
+  String? get profileImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -38,11 +43,16 @@ abstract class $UserModelCopyWith<$Res> {
       _$UserModelCopyWithImpl<$Res, UserModel>;
   @useResult
   $Res call(
-      {String userId,
-      String name,
-      String email,
-      String passwordHash,
-      String profilePictureUrl});
+      {String email,
+      String username,
+      String firstName,
+      String lastName,
+      bool isActive,
+      DateTime dateJoined,
+      String? phoneNumber,
+      String? description,
+      bool? isVerified,
+      String? profileImage});
 }
 
 /// @nodoc
@@ -58,33 +68,58 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? name = null,
     Object? email = null,
-    Object? passwordHash = null,
-    Object? profilePictureUrl = null,
+    Object? username = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? isActive = null,
+    Object? dateJoined = null,
+    Object? phoneNumber = freezed,
+    Object? description = freezed,
+    Object? isVerified = freezed,
+    Object? profileImage = freezed,
   }) {
     return _then(_value.copyWith(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      passwordHash: null == passwordHash
-          ? _value.passwordHash
-          : passwordHash // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePictureUrl: null == profilePictureUrl
-          ? _value.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dateJoined: null == dateJoined
+          ? _value.dateJoined
+          : dateJoined // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isVerified: freezed == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ) as $Val);
   }
 }
@@ -98,11 +133,16 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String userId,
-      String name,
-      String email,
-      String passwordHash,
-      String profilePictureUrl});
+      {String email,
+      String username,
+      String firstName,
+      String lastName,
+      bool isActive,
+      DateTime dateJoined,
+      String? phoneNumber,
+      String? description,
+      bool? isVerified,
+      String? profileImage});
 }
 
 /// @nodoc
@@ -116,33 +156,58 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? userId = null,
-    Object? name = null,
     Object? email = null,
-    Object? passwordHash = null,
-    Object? profilePictureUrl = null,
+    Object? username = null,
+    Object? firstName = null,
+    Object? lastName = null,
+    Object? isActive = null,
+    Object? dateJoined = null,
+    Object? phoneNumber = freezed,
+    Object? description = freezed,
+    Object? isVerified = freezed,
+    Object? profileImage = freezed,
   }) {
     return _then(_$UserModelImpl(
-      userId: null == userId
-          ? _value.userId
-          : userId // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
       email: null == email
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      passwordHash: null == passwordHash
-          ? _value.passwordHash
-          : passwordHash // ignore: cast_nullable_to_non_nullable
+      username: null == username
+          ? _value.username
+          : username // ignore: cast_nullable_to_non_nullable
               as String,
-      profilePictureUrl: null == profilePictureUrl
-          ? _value.profilePictureUrl
-          : profilePictureUrl // ignore: cast_nullable_to_non_nullable
+      firstName: null == firstName
+          ? _value.firstName
+          : firstName // ignore: cast_nullable_to_non_nullable
               as String,
+      lastName: null == lastName
+          ? _value.lastName
+          : lastName // ignore: cast_nullable_to_non_nullable
+              as String,
+      isActive: null == isActive
+          ? _value.isActive
+          : isActive // ignore: cast_nullable_to_non_nullable
+              as bool,
+      dateJoined: null == dateJoined
+          ? _value.dateJoined
+          : dateJoined // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      phoneNumber: freezed == phoneNumber
+          ? _value.phoneNumber
+          : phoneNumber // ignore: cast_nullable_to_non_nullable
+              as String?,
+      description: freezed == description
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String?,
+      isVerified: freezed == isVerified
+          ? _value.isVerified
+          : isVerified // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      profileImage: freezed == profileImage
+          ? _value.profileImage
+          : profileImage // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -151,29 +216,44 @@ class __$$UserModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
-      {required this.userId,
-      required this.name,
-      required this.email,
-      required this.passwordHash,
-      required this.profilePictureUrl});
+      {required this.email,
+      required this.username,
+      required this.firstName,
+      required this.lastName,
+      required this.isActive,
+      required this.dateJoined,
+      this.phoneNumber,
+      this.description,
+      this.isVerified,
+      this.profileImage});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
 
   @override
-  final String userId;
-  @override
-  final String name;
-  @override
   final String email;
   @override
-  final String passwordHash;
+  final String username;
   @override
-  final String profilePictureUrl;
+  final String firstName;
+  @override
+  final String lastName;
+  @override
+  final bool isActive;
+  @override
+  final DateTime dateJoined;
+  @override
+  final String? phoneNumber;
+  @override
+  final String? description;
+  @override
+  final bool? isVerified;
+  @override
+  final String? profileImage;
 
   @override
   String toString() {
-    return 'UserModel(userId: $userId, name: $name, email: $email, passwordHash: $passwordHash, profilePictureUrl: $profilePictureUrl)';
+    return 'UserModel(email: $email, username: $username, firstName: $firstName, lastName: $lastName, isActive: $isActive, dateJoined: $dateJoined, phoneNumber: $phoneNumber, description: $description, isVerified: $isVerified, profileImage: $profileImage)';
   }
 
   @override
@@ -181,19 +261,41 @@ class _$UserModelImpl implements _UserModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UserModelImpl &&
-            (identical(other.userId, userId) || other.userId == userId) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.email, email) || other.email == email) &&
-            (identical(other.passwordHash, passwordHash) ||
-                other.passwordHash == passwordHash) &&
-            (identical(other.profilePictureUrl, profilePictureUrl) ||
-                other.profilePictureUrl == profilePictureUrl));
+            (identical(other.username, username) ||
+                other.username == username) &&
+            (identical(other.firstName, firstName) ||
+                other.firstName == firstName) &&
+            (identical(other.lastName, lastName) ||
+                other.lastName == lastName) &&
+            (identical(other.isActive, isActive) ||
+                other.isActive == isActive) &&
+            (identical(other.dateJoined, dateJoined) ||
+                other.dateJoined == dateJoined) &&
+            (identical(other.phoneNumber, phoneNumber) ||
+                other.phoneNumber == phoneNumber) &&
+            (identical(other.description, description) ||
+                other.description == description) &&
+            (identical(other.isVerified, isVerified) ||
+                other.isVerified == isVerified) &&
+            (identical(other.profileImage, profileImage) ||
+                other.profileImage == profileImage));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, userId, name, email, passwordHash, profilePictureUrl);
+      runtimeType,
+      email,
+      username,
+      firstName,
+      lastName,
+      isActive,
+      dateJoined,
+      phoneNumber,
+      description,
+      isVerified,
+      profileImage);
 
   @JsonKey(ignore: true)
   @override
@@ -211,25 +313,40 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String userId,
-      required final String name,
-      required final String email,
-      required final String passwordHash,
-      required final String profilePictureUrl}) = _$UserModelImpl;
+      {required final String email,
+      required final String username,
+      required final String firstName,
+      required final String lastName,
+      required final bool isActive,
+      required final DateTime dateJoined,
+      final String? phoneNumber,
+      final String? description,
+      final bool? isVerified,
+      final String? profileImage}) = _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
 
   @override
-  String get userId;
-  @override
-  String get name;
-  @override
   String get email;
   @override
-  String get passwordHash;
+  String get username;
   @override
-  String get profilePictureUrl;
+  String get firstName;
+  @override
+  String get lastName;
+  @override
+  bool get isActive;
+  @override
+  DateTime get dateJoined;
+  @override
+  String? get phoneNumber;
+  @override
+  String? get description;
+  @override
+  bool? get isVerified;
+  @override
+  String? get profileImage;
   @override
   @JsonKey(ignore: true)
   _$$UserModelImplCopyWith<_$UserModelImpl> get copyWith =>

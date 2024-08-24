@@ -1,7 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:nerd_studio/screens/cubit/auth_state.dart';
+
+import 'auth_state.dart';
 
 class AuthCubit extends Cubit<AuthState> {
   final Dio dio;

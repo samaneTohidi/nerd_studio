@@ -12,11 +12,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:nerd_studio/main.dart';
 
 void main() {
-  final Dio dio = Dio(BaseOptions(baseUrl: 'http://5.78.55.161:8000/'));
 
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget( MyApp(dio: dio));
+    await tester.pumpWidget( MyApp());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

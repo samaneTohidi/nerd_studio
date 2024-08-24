@@ -8,10 +8,10 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserData> {
   final GeneratedDatabase attachedDatabase;
   final String? _alias;
   $UsersTable(this.attachedDatabase, [this._alias]);
-  static const VerificationMeta _idMeta = const VerificationMeta('id');
+  static const VerificationMeta _userIdMeta = const VerificationMeta('userId');
   @override
-  late final GeneratedColumn<String> id = GeneratedColumn<String>(
-      'id', aliasedName, false,
+  late final GeneratedColumn<String> userId = GeneratedColumn<String>(
+      'user_id', aliasedName, false,
       type: DriftSqlType.string, requiredDuringInsert: true);
   static const VerificationMeta _nameMeta = const VerificationMeta('name');
   @override
@@ -29,8 +29,21 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserData> {
           GeneratedColumn.checkTextLength(minTextLength: 5, maxTextLength: 100),
       type: DriftSqlType.string,
       requiredDuringInsert: true);
+  static const VerificationMeta _passwordHashMeta =
+      const VerificationMeta('passwordHash');
   @override
-  List<GeneratedColumn> get $columns => [id, name, email];
+  late final GeneratedColumn<String> passwordHash = GeneratedColumn<String>(
+      'password_hash', aliasedName, false,
+      type: DriftSqlType.string, requiredDuringInsert: true);
+  static const VerificationMeta _profilePictureUrlMeta =
+      const VerificationMeta('profilePictureUrl');
+  @override
+  late final GeneratedColumn<String> profilePictureUrl =
+      GeneratedColumn<String>('profile_picture_url', aliasedName, false,
+          type: DriftSqlType.string, requiredDuringInsert: true);
+  @override
+  List<GeneratedColumn> get $columns =>
+      [userId, name, email, passwordHash, profilePictureUrl];
   @override
   String get aliasedName => _alias ?? actualTableName;
   @override
@@ -41,10 +54,11 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserData> {
       {bool isInserting = false}) {
     final context = VerificationContext();
     final data = instance.toColumns(true);
-    if (data.containsKey('id')) {
-      context.handle(_idMeta, id.isAcceptableOrUnknown(data['id']!, _idMeta));
+    if (data.containsKey('user_id')) {
+      context.handle(_userIdMeta,
+          userId.isAcceptableOrUnknown(data['user_id']!, _userIdMeta));
     } else if (isInserting) {
-      context.missing(_idMeta);
+      context.missing(_userIdMeta);
     }
     if (data.containsKey('name')) {
       context.handle(
@@ -58,21 +72,41 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserData> {
     } else if (isInserting) {
       context.missing(_emailMeta);
     }
+    if (data.containsKey('password_hash')) {
+      context.handle(
+          _passwordHashMeta,
+          passwordHash.isAcceptableOrUnknown(
+              data['password_hash']!, _passwordHashMeta));
+    } else if (isInserting) {
+      context.missing(_passwordHashMeta);
+    }
+    if (data.containsKey('profile_picture_url')) {
+      context.handle(
+          _profilePictureUrlMeta,
+          profilePictureUrl.isAcceptableOrUnknown(
+              data['profile_picture_url']!, _profilePictureUrlMeta));
+    } else if (isInserting) {
+      context.missing(_profilePictureUrlMeta);
+    }
     return context;
   }
 
   @override
-  Set<GeneratedColumn> get $primaryKey => {id};
+  Set<GeneratedColumn> get $primaryKey => {userId};
   @override
   UserData map(Map<String, dynamic> data, {String? tablePrefix}) {
     final effectivePrefix = tablePrefix != null ? '$tablePrefix.' : '';
     return UserData(
-      id: attachedDatabase.typeMapping
-          .read(DriftSqlType.string, data['${effectivePrefix}id'])!,
+      userId: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}user_id'])!,
       name: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}name'])!,
       email: attachedDatabase.typeMapping
           .read(DriftSqlType.string, data['${effectivePrefix}email'])!,
+      passwordHash: attachedDatabase.typeMapping
+          .read(DriftSqlType.string, data['${effectivePrefix}password_hash'])!,
+      profilePictureUrl: attachedDatabase.typeMapping.read(
+          DriftSqlType.string, data['${effectivePrefix}profile_picture_url'])!,
     );
   }
 
@@ -83,24 +117,35 @@ class $UsersTable extends Users with TableInfo<$UsersTable, UserData> {
 }
 
 class UserData extends DataClass implements Insertable<UserData> {
-  final String id;
+  final String userId;
   final String name;
   final String email;
-  const UserData({required this.id, required this.name, required this.email});
+  final String passwordHash;
+  final String profilePictureUrl;
+  const UserData(
+      {required this.userId,
+      required this.name,
+      required this.email,
+      required this.passwordHash,
+      required this.profilePictureUrl});
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    map['id'] = Variable<String>(id);
+    map['user_id'] = Variable<String>(userId);
     map['name'] = Variable<String>(name);
     map['email'] = Variable<String>(email);
+    map['password_hash'] = Variable<String>(passwordHash);
+    map['profile_picture_url'] = Variable<String>(profilePictureUrl);
     return map;
   }
 
   UsersCompanion toCompanion(bool nullToAbsent) {
     return UsersCompanion(
-      id: Value(id),
+      userId: Value(userId),
       name: Value(name),
       email: Value(email),
+      passwordHash: Value(passwordHash),
+      profilePictureUrl: Value(profilePictureUrl),
     );
   }
 
@@ -108,97 +153,136 @@ class UserData extends DataClass implements Insertable<UserData> {
       {ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return UserData(
-      id: serializer.fromJson<String>(json['id']),
+      userId: serializer.fromJson<String>(json['userId']),
       name: serializer.fromJson<String>(json['name']),
       email: serializer.fromJson<String>(json['email']),
+      passwordHash: serializer.fromJson<String>(json['passwordHash']),
+      profilePictureUrl: serializer.fromJson<String>(json['profilePictureUrl']),
     );
   }
   @override
   Map<String, dynamic> toJson({ValueSerializer? serializer}) {
     serializer ??= driftRuntimeOptions.defaultSerializer;
     return <String, dynamic>{
-      'id': serializer.toJson<String>(id),
+      'userId': serializer.toJson<String>(userId),
       'name': serializer.toJson<String>(name),
       'email': serializer.toJson<String>(email),
+      'passwordHash': serializer.toJson<String>(passwordHash),
+      'profilePictureUrl': serializer.toJson<String>(profilePictureUrl),
     };
   }
 
-  UserData copyWith({String? id, String? name, String? email}) => UserData(
-        id: id ?? this.id,
+  UserData copyWith(
+          {String? userId,
+          String? name,
+          String? email,
+          String? passwordHash,
+          String? profilePictureUrl}) =>
+      UserData(
+        userId: userId ?? this.userId,
         name: name ?? this.name,
         email: email ?? this.email,
+        passwordHash: passwordHash ?? this.passwordHash,
+        profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
       );
   UserData copyWithCompanion(UsersCompanion data) {
     return UserData(
-      id: data.id.present ? data.id.value : this.id,
+      userId: data.userId.present ? data.userId.value : this.userId,
       name: data.name.present ? data.name.value : this.name,
       email: data.email.present ? data.email.value : this.email,
+      passwordHash: data.passwordHash.present
+          ? data.passwordHash.value
+          : this.passwordHash,
+      profilePictureUrl: data.profilePictureUrl.present
+          ? data.profilePictureUrl.value
+          : this.profilePictureUrl,
     );
   }
 
   @override
   String toString() {
     return (StringBuffer('UserData(')
-          ..write('id: $id, ')
+          ..write('userId: $userId, ')
           ..write('name: $name, ')
-          ..write('email: $email')
+          ..write('email: $email, ')
+          ..write('passwordHash: $passwordHash, ')
+          ..write('profilePictureUrl: $profilePictureUrl')
           ..write(')'))
         .toString();
   }
 
   @override
-  int get hashCode => Object.hash(id, name, email);
+  int get hashCode =>
+      Object.hash(userId, name, email, passwordHash, profilePictureUrl);
   @override
   bool operator ==(Object other) =>
       identical(this, other) ||
       (other is UserData &&
-          other.id == this.id &&
+          other.userId == this.userId &&
           other.name == this.name &&
-          other.email == this.email);
+          other.email == this.email &&
+          other.passwordHash == this.passwordHash &&
+          other.profilePictureUrl == this.profilePictureUrl);
 }
 
 class UsersCompanion extends UpdateCompanion<UserData> {
-  final Value<String> id;
+  final Value<String> userId;
   final Value<String> name;
   final Value<String> email;
+  final Value<String> passwordHash;
+  final Value<String> profilePictureUrl;
   final Value<int> rowid;
   const UsersCompanion({
-    this.id = const Value.absent(),
+    this.userId = const Value.absent(),
     this.name = const Value.absent(),
     this.email = const Value.absent(),
+    this.passwordHash = const Value.absent(),
+    this.profilePictureUrl = const Value.absent(),
     this.rowid = const Value.absent(),
   });
   UsersCompanion.insert({
-    required String id,
+    required String userId,
     required String name,
     required String email,
+    required String passwordHash,
+    required String profilePictureUrl,
     this.rowid = const Value.absent(),
-  })  : id = Value(id),
+  })  : userId = Value(userId),
         name = Value(name),
-        email = Value(email);
+        email = Value(email),
+        passwordHash = Value(passwordHash),
+        profilePictureUrl = Value(profilePictureUrl);
   static Insertable<UserData> custom({
-    Expression<String>? id,
+    Expression<String>? userId,
     Expression<String>? name,
     Expression<String>? email,
+    Expression<String>? passwordHash,
+    Expression<String>? profilePictureUrl,
     Expression<int>? rowid,
   }) {
     return RawValuesInsertable({
-      if (id != null) 'id': id,
+      if (userId != null) 'user_id': userId,
       if (name != null) 'name': name,
       if (email != null) 'email': email,
+      if (passwordHash != null) 'password_hash': passwordHash,
+      if (profilePictureUrl != null) 'profile_picture_url': profilePictureUrl,
       if (rowid != null) 'rowid': rowid,
     });
   }
 
   UsersCompanion copyWith(
-      {Value<String>? id,
+      {Value<String>? userId,
       Value<String>? name,
       Value<String>? email,
+      Value<String>? passwordHash,
+      Value<String>? profilePictureUrl,
       Value<int>? rowid}) {
     return UsersCompanion(
-      id: id ?? this.id,
+      userId: userId ?? this.userId,
       name: name ?? this.name,
       email: email ?? this.email,
+      passwordHash: passwordHash ?? this.passwordHash,
+      profilePictureUrl: profilePictureUrl ?? this.profilePictureUrl,
       rowid: rowid ?? this.rowid,
     );
   }
@@ -206,14 +290,20 @@ class UsersCompanion extends UpdateCompanion<UserData> {
   @override
   Map<String, Expression> toColumns(bool nullToAbsent) {
     final map = <String, Expression>{};
-    if (id.present) {
-      map['id'] = Variable<String>(id.value);
+    if (userId.present) {
+      map['user_id'] = Variable<String>(userId.value);
     }
     if (name.present) {
       map['name'] = Variable<String>(name.value);
     }
     if (email.present) {
       map['email'] = Variable<String>(email.value);
+    }
+    if (passwordHash.present) {
+      map['password_hash'] = Variable<String>(passwordHash.value);
+    }
+    if (profilePictureUrl.present) {
+      map['profile_picture_url'] = Variable<String>(profilePictureUrl.value);
     }
     if (rowid.present) {
       map['rowid'] = Variable<int>(rowid.value);
@@ -224,9 +314,11 @@ class UsersCompanion extends UpdateCompanion<UserData> {
   @override
   String toString() {
     return (StringBuffer('UsersCompanion(')
-          ..write('id: $id, ')
+          ..write('userId: $userId, ')
           ..write('name: $name, ')
           ..write('email: $email, ')
+          ..write('passwordHash: $passwordHash, ')
+          ..write('profilePictureUrl: $profilePictureUrl, ')
           ..write('rowid: $rowid')
           ..write(')'))
         .toString();
@@ -245,15 +337,19 @@ abstract class _$LocalDatabase extends GeneratedDatabase {
 }
 
 typedef $$UsersTableCreateCompanionBuilder = UsersCompanion Function({
-  required String id,
+  required String userId,
   required String name,
   required String email,
+  required String passwordHash,
+  required String profilePictureUrl,
   Value<int> rowid,
 });
 typedef $$UsersTableUpdateCompanionBuilder = UsersCompanion Function({
-  Value<String> id,
+  Value<String> userId,
   Value<String> name,
   Value<String> email,
+  Value<String> passwordHash,
+  Value<String> profilePictureUrl,
   Value<int> rowid,
 });
 
@@ -274,27 +370,35 @@ class $$UsersTableTableManager extends RootTableManager<
           orderingComposer:
               $$UsersTableOrderingComposer(ComposerState(db, table)),
           updateCompanionCallback: ({
-            Value<String> id = const Value.absent(),
+            Value<String> userId = const Value.absent(),
             Value<String> name = const Value.absent(),
             Value<String> email = const Value.absent(),
+            Value<String> passwordHash = const Value.absent(),
+            Value<String> profilePictureUrl = const Value.absent(),
             Value<int> rowid = const Value.absent(),
           }) =>
               UsersCompanion(
-            id: id,
+            userId: userId,
             name: name,
             email: email,
+            passwordHash: passwordHash,
+            profilePictureUrl: profilePictureUrl,
             rowid: rowid,
           ),
           createCompanionCallback: ({
-            required String id,
+            required String userId,
             required String name,
             required String email,
+            required String passwordHash,
+            required String profilePictureUrl,
             Value<int> rowid = const Value.absent(),
           }) =>
               UsersCompanion.insert(
-            id: id,
+            userId: userId,
             name: name,
             email: email,
+            passwordHash: passwordHash,
+            profilePictureUrl: profilePictureUrl,
             rowid: rowid,
           ),
         ));
@@ -303,8 +407,8 @@ class $$UsersTableTableManager extends RootTableManager<
 class $$UsersTableFilterComposer
     extends FilterComposer<_$LocalDatabase, $UsersTable> {
   $$UsersTableFilterComposer(super.$state);
-  ColumnFilters<String> get id => $state.composableBuilder(
-      column: $state.table.id,
+  ColumnFilters<String> get userId => $state.composableBuilder(
+      column: $state.table.userId,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
 
@@ -317,13 +421,23 @@ class $$UsersTableFilterComposer
       column: $state.table.email,
       builder: (column, joinBuilders) =>
           ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get passwordHash => $state.composableBuilder(
+      column: $state.table.passwordHash,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
+
+  ColumnFilters<String> get profilePictureUrl => $state.composableBuilder(
+      column: $state.table.profilePictureUrl,
+      builder: (column, joinBuilders) =>
+          ColumnFilters(column, joinBuilders: joinBuilders));
 }
 
 class $$UsersTableOrderingComposer
     extends OrderingComposer<_$LocalDatabase, $UsersTable> {
   $$UsersTableOrderingComposer(super.$state);
-  ColumnOrderings<String> get id => $state.composableBuilder(
-      column: $state.table.id,
+  ColumnOrderings<String> get userId => $state.composableBuilder(
+      column: $state.table.userId,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 
@@ -334,6 +448,16 @@ class $$UsersTableOrderingComposer
 
   ColumnOrderings<String> get email => $state.composableBuilder(
       column: $state.table.email,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get passwordHash => $state.composableBuilder(
+      column: $state.table.passwordHash,
+      builder: (column, joinBuilders) =>
+          ColumnOrderings(column, joinBuilders: joinBuilders));
+
+  ColumnOrderings<String> get profilePictureUrl => $state.composableBuilder(
+      column: $state.table.profilePictureUrl,
       builder: (column, joinBuilders) =>
           ColumnOrderings(column, joinBuilders: joinBuilders));
 }

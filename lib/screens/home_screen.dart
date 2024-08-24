@@ -1,18 +1,26 @@
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import '../models/user_model.dart';
 
-class HomeScreen extends StatefulWidget {
-  final User user;
+class HomeScreen extends StatelessWidget {
+  final UserModel userData;
 
-   HomeScreen({super.key, required this.user});
+  HomeScreen({required this.userData});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(title: Text('Home')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text('Welcome, ${userData.firstName} ${userData.lastName}'),
+            Text('Email: ${userData.email}'),
+            // سایر اطلاعات کاربر را اینجا نمایش دهید...
+          ],
+        ),
+      ),
+    );
   }
 }

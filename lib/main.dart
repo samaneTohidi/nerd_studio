@@ -1,8 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:nerd_studio/screens/auth_gate.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
+import 'package:nerd_studio/screens/login/login_screen.dart';
 
 import 'firebase_options.dart';
 
@@ -10,26 +12,35 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
-  final Dio dio = Dio(BaseOptions(baseUrl: 'http://5.78.55.161:8000/'));
 
-  runApp(MyApp(dio: dio));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final Dio dio;
 
-  MyApp({super.key, required this.dio});
+  MyApp({super.key,});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        textTheme: TextTheme(
+          displayLarge: const TextStyle(
+              fontSize: 32, fontWeight: FontWeight.bold, color: Colors.black),
+          // Equivalent to headline1
+          bodyLarge: const TextStyle(fontSize: 16, color: Colors.black),
+          // Equivalent to bodyText1
+          labelLarge: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          titleMedium: TextStyle(fontSize: 14, color: Colors.grey[600]),
+        ),
         useMaterial3: true,
       ),
-      home: AuthGate(),
+      home: BlocProvider(
+        create: (context) => LoginCubit(),
+        child: LoginScreen(),
+      ),
     );
   }
 }
