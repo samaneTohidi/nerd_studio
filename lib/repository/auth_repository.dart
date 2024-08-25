@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:nerd_studio/models/user_model.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import '../models/login_response_model.dart';
 
 class AuthRepository {
   final Dio dio;
@@ -38,29 +39,30 @@ class AuthRepository {
     }
   }
 
-  Future<UserModel> loginUser(String email, String password) async {
+  Future<LoginResponseModel> loginUser(String email, String password) async {
     try {
       final response = await dio.post('/v1/api/auth/login/', data: {
         'email': email,
         'password': password,
       });
 
-      final String token = response.data['access_token'];
+      final loginResponse = LoginResponseModel.fromJson(response.data);
 
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString('auth_token', token);
+      await prefs.setString('auth_token', loginResponse.accessToken);
+      dio.options.headers['Authorization'] = 'Bearer ${loginResponse.accessToken}';
+      return loginResponse;
 
-      dio.options.headers['Authorization'] = 'Bearer $token';
-
-      final userResponse = await dio.get('/v1/api/users/me/');
-      print('samsam${userResponse.data}');
-
-      return UserModel.fromJson(userResponse.data);
-
+    } on DioException catch (e) {
+      if (e.response?.statusCode == 400) {
+        throw Exception('Invalid email or password');
+      } else if (e.response?.statusCode == 422) {
+        throw Exception('Unprocessable Entity: Please check your input');
+      } else {
+        throw Exception('Login failed: ${e.message}');
+      }
     } catch (e) {
-      print('samsam${e.toString()}');
-
-      throw Exception('Login failed${e.toString()}');
+      throw Exception('Login failed: ${e.toString()}');
     }
   }
 

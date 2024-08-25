@@ -15,6 +15,7 @@ class LoginScreen extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           success: (userData) {
+            // Navigate to HomeScreen if login is successful
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
@@ -24,7 +25,10 @@ class LoginScreen extends StatelessWidget {
           },
           failure: (error) {
             ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text('Login failed: $error')),
+              SnackBar(
+                content: Text(error),
+                backgroundColor: Colors.red,
+              ),
             );
           },
           orElse: () {},
@@ -35,13 +39,11 @@ class LoginScreen extends StatelessWidget {
           initial: () => _buildUi(context),
           loading: () => _buildUi(context),
           success: (_) => _buildUi(context),
-          failure: (error) => _buildError(error),
+          failure: (error) => _buildUi(context),
         );
       },
     );
   }
-
-  Center _buildError(String error) => Center(child: Text('Error: $error'));
 
   Widget _buildUi(BuildContext context) {
     return Scaffold(
@@ -109,7 +111,7 @@ class LoginScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "Already haven't an account?",
+                  "Don't have an account?",
                   style: Theme.of(context).textTheme.bodyLarge,
                 ),
                 const SizedBox(width: 4),

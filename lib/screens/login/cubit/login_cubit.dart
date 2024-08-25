@@ -9,7 +9,14 @@ import '../../../repository/auth_repository.dart';
 part 'login_state.dart';
 part 'login_cubit.freezed.dart';
 
-final Dio dio = Dio(BaseOptions(baseUrl: 'http://5.78.55.161:8000'));
+final Dio dio = Dio(
+  BaseOptions(
+    baseUrl: 'http://5.78.55.161:8000',
+    validateStatus: (status) {
+      return status != null && status < 500;  // Allows handling of 4xx errors
+    },
+  ),
+);
 
 class LoginCubit extends Cubit<LoginState> {
   final AuthRepository authRepository = AuthRepository(dio: dio);
@@ -19,14 +26,10 @@ class LoginCubit extends Cubit<LoginState> {
   Future<void> login(String email, String password) async {
     emit(const LoginState.loading());
     try {
-      final userData = await authRepository.loginUser(email, password);
-      print('samsam${userData.email}');
-      emit(LoginState.success(userData));
+      final loginResponse = await authRepository.loginUser(email, password);
+      emit(LoginState.success(loginResponse.workspace.user));
     } catch (e) {
-      emit(LoginState.failure(e.toString()));
+      emit(LoginState.failure('Login failed: ${e.toString()}'));
     }
   }
 }
-
-
-
