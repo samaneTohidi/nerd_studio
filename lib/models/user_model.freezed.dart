@@ -21,14 +21,21 @@ UserModel _$UserModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$UserModel {
   String get email => throw _privateConstructorUsedError;
-  String get username => throw _privateConstructorUsedError;
-  String get firstName => throw _privateConstructorUsedError;
-  String get lastName => throw _privateConstructorUsedError;
+  String? get username => throw _privateConstructorUsedError;
+  @JsonKey(name: 'first_name')
+  String? get firstName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'last_name')
+  String? get lastName => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_active')
   bool get isActive => throw _privateConstructorUsedError;
+  @JsonKey(name: 'date_joined')
   DateTime get dateJoined => throw _privateConstructorUsedError;
+  @JsonKey(name: 'phone_number')
   String? get phoneNumber => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
+  @JsonKey(name: 'is_verified')
   bool? get isVerified => throw _privateConstructorUsedError;
+  @JsonKey(name: 'profile_image')
   String? get profileImage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,15 +51,15 @@ abstract class $UserModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String email,
-      String username,
-      String firstName,
-      String lastName,
-      bool isActive,
-      DateTime dateJoined,
-      String? phoneNumber,
+      String? username,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'is_active') bool isActive,
+      @JsonKey(name: 'date_joined') DateTime dateJoined,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
       String? description,
-      bool? isVerified,
-      String? profileImage});
+      @JsonKey(name: 'is_verified') bool? isVerified,
+      @JsonKey(name: 'profile_image') String? profileImage});
 }
 
 /// @nodoc
@@ -69,9 +76,9 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
   @override
   $Res call({
     Object? email = null,
-    Object? username = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? isActive = null,
     Object? dateJoined = null,
     Object? phoneNumber = freezed,
@@ -84,18 +91,18 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -134,15 +141,15 @@ abstract class _$$UserModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {String email,
-      String username,
-      String firstName,
-      String lastName,
-      bool isActive,
-      DateTime dateJoined,
-      String? phoneNumber,
+      String? username,
+      @JsonKey(name: 'first_name') String? firstName,
+      @JsonKey(name: 'last_name') String? lastName,
+      @JsonKey(name: 'is_active') bool isActive,
+      @JsonKey(name: 'date_joined') DateTime dateJoined,
+      @JsonKey(name: 'phone_number') String? phoneNumber,
       String? description,
-      bool? isVerified,
-      String? profileImage});
+      @JsonKey(name: 'is_verified') bool? isVerified,
+      @JsonKey(name: 'profile_image') String? profileImage});
 }
 
 /// @nodoc
@@ -157,9 +164,9 @@ class __$$UserModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? email = null,
-    Object? username = null,
-    Object? firstName = null,
-    Object? lastName = null,
+    Object? username = freezed,
+    Object? firstName = freezed,
+    Object? lastName = freezed,
     Object? isActive = null,
     Object? dateJoined = null,
     Object? phoneNumber = freezed,
@@ -172,18 +179,18 @@ class __$$UserModelImplCopyWithImpl<$Res>
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
               as String,
-      username: null == username
+      username: freezed == username
           ? _value.username
           : username // ignore: cast_nullable_to_non_nullable
-              as String,
-      firstName: null == firstName
+              as String?,
+      firstName: freezed == firstName
           ? _value.firstName
           : firstName // ignore: cast_nullable_to_non_nullable
-              as String,
-      lastName: null == lastName
+              as String?,
+      lastName: freezed == lastName
           ? _value.lastName
           : lastName // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       isActive: null == isActive
           ? _value.isActive
           : isActive // ignore: cast_nullable_to_non_nullable
@@ -217,15 +224,15 @@ class __$$UserModelImplCopyWithImpl<$Res>
 class _$UserModelImpl implements _UserModel {
   const _$UserModelImpl(
       {required this.email,
-      required this.username,
-      required this.firstName,
-      required this.lastName,
-      required this.isActive,
-      required this.dateJoined,
-      this.phoneNumber,
+      this.username,
+      @JsonKey(name: 'first_name') this.firstName,
+      @JsonKey(name: 'last_name') this.lastName,
+      @JsonKey(name: 'is_active') required this.isActive,
+      @JsonKey(name: 'date_joined') required this.dateJoined,
+      @JsonKey(name: 'phone_number') this.phoneNumber,
       this.description,
-      this.isVerified,
-      this.profileImage});
+      @JsonKey(name: 'is_verified') this.isVerified,
+      @JsonKey(name: 'profile_image') this.profileImage});
 
   factory _$UserModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$UserModelImplFromJson(json);
@@ -233,22 +240,29 @@ class _$UserModelImpl implements _UserModel {
   @override
   final String email;
   @override
-  final String username;
+  final String? username;
   @override
-  final String firstName;
+  @JsonKey(name: 'first_name')
+  final String? firstName;
   @override
-  final String lastName;
+  @JsonKey(name: 'last_name')
+  final String? lastName;
   @override
+  @JsonKey(name: 'is_active')
   final bool isActive;
   @override
+  @JsonKey(name: 'date_joined')
   final DateTime dateJoined;
   @override
+  @JsonKey(name: 'phone_number')
   final String? phoneNumber;
   @override
   final String? description;
   @override
+  @JsonKey(name: 'is_verified')
   final bool? isVerified;
   @override
+  @JsonKey(name: 'profile_image')
   final String? profileImage;
 
   @override
@@ -313,16 +327,17 @@ class _$UserModelImpl implements _UserModel {
 
 abstract class _UserModel implements UserModel {
   const factory _UserModel(
-      {required final String email,
-      required final String username,
-      required final String firstName,
-      required final String lastName,
-      required final bool isActive,
-      required final DateTime dateJoined,
-      final String? phoneNumber,
-      final String? description,
-      final bool? isVerified,
-      final String? profileImage}) = _$UserModelImpl;
+          {required final String email,
+          final String? username,
+          @JsonKey(name: 'first_name') final String? firstName,
+          @JsonKey(name: 'last_name') final String? lastName,
+          @JsonKey(name: 'is_active') required final bool isActive,
+          @JsonKey(name: 'date_joined') required final DateTime dateJoined,
+          @JsonKey(name: 'phone_number') final String? phoneNumber,
+          final String? description,
+          @JsonKey(name: 'is_verified') final bool? isVerified,
+          @JsonKey(name: 'profile_image') final String? profileImage}) =
+      _$UserModelImpl;
 
   factory _UserModel.fromJson(Map<String, dynamic> json) =
       _$UserModelImpl.fromJson;
@@ -330,22 +345,29 @@ abstract class _UserModel implements UserModel {
   @override
   String get email;
   @override
-  String get username;
+  String? get username;
   @override
-  String get firstName;
+  @JsonKey(name: 'first_name')
+  String? get firstName;
   @override
-  String get lastName;
+  @JsonKey(name: 'last_name')
+  String? get lastName;
   @override
+  @JsonKey(name: 'is_active')
   bool get isActive;
   @override
+  @JsonKey(name: 'date_joined')
   DateTime get dateJoined;
   @override
+  @JsonKey(name: 'phone_number')
   String? get phoneNumber;
   @override
   String? get description;
   @override
+  @JsonKey(name: 'is_verified')
   bool? get isVerified;
   @override
+  @JsonKey(name: 'profile_image')
   String? get profileImage;
   @override
   @JsonKey(ignore: true)

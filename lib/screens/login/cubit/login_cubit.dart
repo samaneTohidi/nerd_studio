@@ -20,6 +20,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoginState.loading());
     try {
       final userData = await authRepository.loginUser(email, password);
+      print('samsam${userData.email}');
       emit(LoginState.success(userData));
     } catch (e) {
       emit(LoginState.failure(e.toString()));

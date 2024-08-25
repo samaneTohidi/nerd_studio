@@ -1,3 +1,4 @@
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user_model.freezed.dart';
 
@@ -7,16 +8,17 @@ part 'user_model.g.dart';
 class UserModel with _$UserModel {
   const factory UserModel({
     required String email,
-    required String username,
-    required String firstName,
-    required String lastName,
-    required bool isActive,
-    required DateTime dateJoined,
-    String? phoneNumber,
+     String? username,
+    @JsonKey(name: 'first_name')  String? firstName,
+    @JsonKey(name: 'last_name') String? lastName,
+    @JsonKey(name: 'is_active') required bool isActive,
+    @JsonKey(name: 'date_joined') required DateTime dateJoined,
+    @JsonKey(name: 'phone_number') String? phoneNumber,
     String? description,
-    bool? isVerified,
-    String? profileImage,
+    @JsonKey(name: 'is_verified') bool? isVerified,
+    @JsonKey(name: 'profile_image') String? profileImage,
   }) = _UserModel;
 
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 }
+

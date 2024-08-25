@@ -53,10 +53,14 @@ class AuthRepository {
       dio.options.headers['Authorization'] = 'Bearer $token';
 
       final userResponse = await dio.get('/v1/api/users/me/');
+      print('samsam${userResponse.data}');
+
       return UserModel.fromJson(userResponse.data);
 
     } catch (e) {
-      throw Exception('Login failed');
+      print('samsam${e.toString()}');
+
+      throw Exception('Login failed${e.toString()}');
     }
   }
 
