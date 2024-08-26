@@ -21,9 +21,9 @@ LoginResponseModel _$LoginResponseModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$LoginResponseModel {
   @JsonKey(name: 'access_token')
-  String get accessToken => throw _privateConstructorUsedError;
+  String? get accessToken => throw _privateConstructorUsedError;
   @JsonKey(name: 'refresh_token')
-  String get refreshToken => throw _privateConstructorUsedError;
+  String? get refreshToken => throw _privateConstructorUsedError;
   WorkspaceModel get workspace => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -39,8 +39,8 @@ abstract class $LoginResponseModelCopyWith<$Res> {
       _$LoginResponseModelCopyWithImpl<$Res, LoginResponseModel>;
   @useResult
   $Res call(
-      {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String refreshToken,
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'refresh_token') String? refreshToken,
       WorkspaceModel workspace});
 
   $WorkspaceModelCopyWith<$Res> get workspace;
@@ -59,19 +59,19 @@ class _$LoginResponseModelCopyWithImpl<$Res, $Val extends LoginResponseModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
-    Object? refreshToken = null,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
     Object? workspace = null,
   }) {
     return _then(_value.copyWith(
-      accessToken: null == accessToken
+      accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      refreshToken: null == refreshToken
+              as String?,
+      refreshToken: freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       workspace: null == workspace
           ? _value.workspace
           : workspace // ignore: cast_nullable_to_non_nullable
@@ -97,8 +97,8 @@ abstract class _$$LoginResponseModelImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(name: 'access_token') String accessToken,
-      @JsonKey(name: 'refresh_token') String refreshToken,
+      {@JsonKey(name: 'access_token') String? accessToken,
+      @JsonKey(name: 'refresh_token') String? refreshToken,
       WorkspaceModel workspace});
 
   @override
@@ -116,19 +116,19 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? accessToken = null,
-    Object? refreshToken = null,
+    Object? accessToken = freezed,
+    Object? refreshToken = freezed,
     Object? workspace = null,
   }) {
     return _then(_$LoginResponseModelImpl(
-      accessToken: null == accessToken
+      accessToken: freezed == accessToken
           ? _value.accessToken
           : accessToken // ignore: cast_nullable_to_non_nullable
-              as String,
-      refreshToken: null == refreshToken
+              as String?,
+      refreshToken: freezed == refreshToken
           ? _value.refreshToken
           : refreshToken // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       workspace: null == workspace
           ? _value.workspace
           : workspace // ignore: cast_nullable_to_non_nullable
@@ -141,8 +141,8 @@ class __$$LoginResponseModelImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$LoginResponseModelImpl implements _LoginResponseModel {
   const _$LoginResponseModelImpl(
-      {@JsonKey(name: 'access_token') required this.accessToken,
-      @JsonKey(name: 'refresh_token') required this.refreshToken,
+      {@JsonKey(name: 'access_token') this.accessToken,
+      @JsonKey(name: 'refresh_token') this.refreshToken,
       required this.workspace});
 
   factory _$LoginResponseModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -150,10 +150,10 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
 
   @override
   @JsonKey(name: 'access_token')
-  final String accessToken;
+  final String? accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  final String refreshToken;
+  final String? refreshToken;
   @override
   final WorkspaceModel workspace;
 
@@ -197,8 +197,8 @@ class _$LoginResponseModelImpl implements _LoginResponseModel {
 
 abstract class _LoginResponseModel implements LoginResponseModel {
   const factory _LoginResponseModel(
-      {@JsonKey(name: 'access_token') required final String accessToken,
-      @JsonKey(name: 'refresh_token') required final String refreshToken,
+      {@JsonKey(name: 'access_token') final String? accessToken,
+      @JsonKey(name: 'refresh_token') final String? refreshToken,
       required final WorkspaceModel workspace}) = _$LoginResponseModelImpl;
 
   factory _LoginResponseModel.fromJson(Map<String, dynamic> json) =
@@ -206,10 +206,10 @@ abstract class _LoginResponseModel implements LoginResponseModel {
 
   @override
   @JsonKey(name: 'access_token')
-  String get accessToken;
+  String? get accessToken;
   @override
   @JsonKey(name: 'refresh_token')
-  String get refreshToken;
+  String? get refreshToken;
   @override
   WorkspaceModel get workspace;
   @override

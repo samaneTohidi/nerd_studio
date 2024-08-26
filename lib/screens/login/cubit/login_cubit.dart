@@ -27,7 +27,7 @@ class LoginCubit extends Cubit<LoginState> {
     emit(const LoginState.loading());
     try {
       final loginResponse = await authRepository.loginUser(email, password);
-      emit(LoginState.success(loginResponse.workspace.user));
+      emit(LoginState.success(loginResponse!.workspace.user));
     } catch (e) {
       emit(LoginState.failure('Login failed: ${e.toString()}'));
     }

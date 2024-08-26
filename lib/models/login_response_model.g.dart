@@ -9,8 +9,8 @@ part of 'login_response_model.dart';
 _$LoginResponseModelImpl _$$LoginResponseModelImplFromJson(
         Map<String, dynamic> json) =>
     _$LoginResponseModelImpl(
-      accessToken: json['access_token'] as String,
-      refreshToken: json['refresh_token'] as String,
+      accessToken: json['access_token'] as String?,
+      refreshToken: json['refresh_token'] as String?,
       workspace:
           WorkspaceModel.fromJson(json['workspace'] as Map<String, dynamic>),
     );
