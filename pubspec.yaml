@@ -40,6 +40,7 @@ dependencies:
   google_sign_in: ^6.2.1
   flutter_bloc: ^8.1.6
   shared_preferences: ^2.3.2
+  widgetbook_annotation: ^3.1.0
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +49,8 @@ dev_dependencies:
   freezed: ^2.0.0
   json_serializable: ^6.0.0
   drift_dev: ^2.0.0
+  widgetbook: ^3.8.1
+  widgetbook_generator: ^3.8.0
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

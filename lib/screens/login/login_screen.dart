@@ -1,9 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
+import 'package:nerd_studio/screens/sign_up/cubit/sign_up_cubit.dart';
 
 import '../home_screen.dart';
+import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
@@ -48,7 +49,8 @@ class LoginScreen extends StatelessWidget {
   Widget _buildUi(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body: Padding(
+      body:
+      Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -102,8 +104,8 @@ class LoginScreen extends StatelessWidget {
               child: Text(
                 'Login',
                 style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                  color: Colors.white,
-                ),
+                      color: Colors.white,
+                    ),
               ),
             ),
             const SizedBox(height: 16),
@@ -117,14 +119,21 @@ class LoginScreen extends StatelessWidget {
                 const SizedBox(width: 4),
                 GestureDetector(
                   onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => BlocProvider(
+                                  create: (context) => SignUpCubit(),
+                                  child:  SignUpScreen(),
+                                )));
                     // Navigate to Sign Up screen
                   },
                   child: Text(
                     'Sign Up',
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: Theme.of(context).colorScheme.secondary,
-                      fontWeight: FontWeight.bold,
-                    ),
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontWeight: FontWeight.bold,
+                        ),
                   ),
                 ),
               ],
