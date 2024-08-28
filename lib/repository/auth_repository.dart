@@ -5,27 +5,41 @@ import 'package:flutter/cupertino.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/login_response_model.dart';
+import '../models/register_request_model.dart';
+import '../models/register_response_model.dart';
 
 class AuthRepository {
   final Dio dio;
 
   AuthRepository({required this.dio});
 
-  Future<void> registerUser(
+  Future<RegisterResponseModel?> registerUser(
       String email, String username, String password) async {
     try {
+      final registerRequest = RegisterRequestModel(
+        username: username,
+        email: email,
+        password: password,
+      );
+
       final response = await dio.post(
         '/v1/api/auth/register/',
-        data: {
-          'email': email,
-          'username': username,
-          'password': password,
-        },
+        data: registerRequest.toJson(),
       );
-      print('User registered: ${response.data}');
+
+      if (response.statusCode == 200) {
+        final registerResponse = RegisterResponseModel.fromJson(response.data);
+        return registerResponse;
+      } else {
+        throw Exception('Failed to register. Status code: ${response.statusCode}');
+      }
+    } on DioException catch (e) {
+      _handleDioError(e);
     } catch (e) {
-      print('Error registering user: $e');
+      debugPrint('Error: ${e.toString()}');
+      throw Exception('Register failed: ${e.toString()}');
     }
+    return null;
   }
 
   Future<void> confirmRegistration(String token, String email) async {
@@ -102,18 +116,18 @@ class AuthRepository {
       debugPrint('Response data: $responseData');
 
       if (statusCode == 400) {
-        throw Exception('Invalid email or password');
+        throw Exception('Invalid input data');
       } else if (statusCode == 404) {
         throw Exception(
-            'User not found: The email or password you entered is incorrect or the user does not exist.');
+            'User not found: The email or username you entered is incorrect or the user does not exist.');
       } else if (statusCode == 422) {
         throw Exception('Unprocessable Entity: Please check your input');
       } else {
-        throw Exception('Login failed: ${e.message}');
+        throw Exception('Register failed: ${e.message}');
       }
     } else {
       debugPrint('Error without response: ${e.message}');
-      throw Exception('Login failed: ${e.message}');
+      throw Exception('Register failed: ${e.message}');
     }
   }
 

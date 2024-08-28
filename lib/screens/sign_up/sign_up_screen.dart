@@ -5,6 +5,8 @@ import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
 import 'package:nerd_studio/screens/login/login_screen.dart';
 import 'package:nerd_studio/screens/sign_up/cubit/sign_up_cubit.dart';
 
+import '../home_screen.dart';
+
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
 
@@ -17,14 +19,15 @@ class SignUpScreen extends StatelessWidget {
     return BlocConsumer<SignUpCubit, SignUpState>(
       listener: (context, state) {
         state.maybeWhen(
-          success: () {
+          success: (response) {
             // Navigate to HomeScreen if login is successful
-            // Navigator.pushReplacement(
-            //   context,
-            //   MaterialPageRoute(
-            //     builder: (context) => HomeScreen(userData: userData),
-            //   ),
-            // );
+            print('response is ${response.message}');
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => HomeScreen(userData: response.workspace.user),
+              ),
+            );
           },
           failure: (error) {
             ScaffoldMessenger.of(context).showSnackBar(
@@ -41,7 +44,7 @@ class SignUpScreen extends StatelessWidget {
         return state.when(
             initial: () => _buildUi(context),
             loading: () => _buildUi(context),
-            success: () => _buildUi(context),
+            success: (_) => _buildUi(context),
             failure: (error) => _buildUi(context));
       },
     );
