@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'auth_state.dart';
+part of 'chat_cubit.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -15,12 +15,12 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$AuthState {
+mixin _$ChatState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AuthState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? success,
+    TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,48 +36,48 @@ mixin _$AuthState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitial value) initial,
-    required TResult Function(AuthLoading value) loading,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthFailure value) failure,
+    required TResult Function(_ChatInitial value) initial,
+    required TResult Function(_ChatLoading value) loading,
+    required TResult Function(_ChatSuccess value) success,
+    required TResult Function(_ChatFailure value) failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitial value)? initial,
-    TResult? Function(AuthLoading value)? loading,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthFailure value)? failure,
+    TResult? Function(_ChatInitial value)? initial,
+    TResult? Function(_ChatLoading value)? loading,
+    TResult? Function(_ChatSuccess value)? success,
+    TResult? Function(_ChatFailure value)? failure,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitial value)? initial,
-    TResult Function(AuthLoading value)? loading,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthFailure value)? failure,
+    TResult Function(_ChatInitial value)? initial,
+    TResult Function(_ChatLoading value)? loading,
+    TResult Function(_ChatSuccess value)? success,
+    TResult Function(_ChatFailure value)? failure,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $AuthStateCopyWith<$Res> {
-  factory $AuthStateCopyWith(AuthState value, $Res Function(AuthState) then) =
-      _$AuthStateCopyWithImpl<$Res, AuthState>;
+abstract class $ChatStateCopyWith<$Res> {
+  factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
+      _$ChatStateCopyWithImpl<$Res, ChatState>;
 }
 
 /// @nodoc
-class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
-    implements $AuthStateCopyWith<$Res> {
-  _$AuthStateCopyWithImpl(this._value, this._then);
+class _$ChatStateCopyWithImpl<$Res, $Val extends ChatState>
+    implements $ChatStateCopyWith<$Res> {
+  _$ChatStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -86,35 +86,35 @@ class _$AuthStateCopyWithImpl<$Res, $Val extends AuthState>
 }
 
 /// @nodoc
-abstract class _$$AuthInitialImplCopyWith<$Res> {
-  factory _$$AuthInitialImplCopyWith(
-          _$AuthInitialImpl value, $Res Function(_$AuthInitialImpl) then) =
-      __$$AuthInitialImplCopyWithImpl<$Res>;
+abstract class _$$ChatInitialImplCopyWith<$Res> {
+  factory _$$ChatInitialImplCopyWith(
+          _$ChatInitialImpl value, $Res Function(_$ChatInitialImpl) then) =
+      __$$ChatInitialImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthInitialImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthInitialImpl>
-    implements _$$AuthInitialImplCopyWith<$Res> {
-  __$$AuthInitialImplCopyWithImpl(
-      _$AuthInitialImpl _value, $Res Function(_$AuthInitialImpl) _then)
+class __$$ChatInitialImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatInitialImpl>
+    implements _$$ChatInitialImplCopyWith<$Res> {
+  __$$ChatInitialImplCopyWithImpl(
+      _$ChatInitialImpl _value, $Res Function(_$ChatInitialImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthInitialImpl implements AuthInitial {
-  const _$AuthInitialImpl();
+class _$ChatInitialImpl implements _ChatInitial {
+  const _$ChatInitialImpl();
 
   @override
   String toString() {
-    return 'AuthState.initial()';
+    return 'ChatState.initial()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthInitialImpl);
+        (other.runtimeType == runtimeType && other is _$ChatInitialImpl);
   }
 
   @override
@@ -125,7 +125,7 @@ class _$AuthInitialImpl implements AuthInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$AuthInitialImpl implements AuthInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? success,
+    TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$AuthInitialImpl implements AuthInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -160,10 +160,10 @@ class _$AuthInitialImpl implements AuthInitial {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitial value) initial,
-    required TResult Function(AuthLoading value) loading,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthFailure value) failure,
+    required TResult Function(_ChatInitial value) initial,
+    required TResult Function(_ChatLoading value) loading,
+    required TResult Function(_ChatSuccess value) success,
+    required TResult Function(_ChatFailure value) failure,
   }) {
     return initial(this);
   }
@@ -171,10 +171,10 @@ class _$AuthInitialImpl implements AuthInitial {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitial value)? initial,
-    TResult? Function(AuthLoading value)? loading,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthFailure value)? failure,
+    TResult? Function(_ChatInitial value)? initial,
+    TResult? Function(_ChatLoading value)? loading,
+    TResult? Function(_ChatSuccess value)? success,
+    TResult? Function(_ChatFailure value)? failure,
   }) {
     return initial?.call(this);
   }
@@ -182,10 +182,10 @@ class _$AuthInitialImpl implements AuthInitial {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitial value)? initial,
-    TResult Function(AuthLoading value)? loading,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthFailure value)? failure,
+    TResult Function(_ChatInitial value)? initial,
+    TResult Function(_ChatLoading value)? loading,
+    TResult Function(_ChatSuccess value)? success,
+    TResult Function(_ChatFailure value)? failure,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -195,40 +195,40 @@ class _$AuthInitialImpl implements AuthInitial {
   }
 }
 
-abstract class AuthInitial implements AuthState {
-  const factory AuthInitial() = _$AuthInitialImpl;
+abstract class _ChatInitial implements ChatState {
+  const factory _ChatInitial() = _$ChatInitialImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthLoadingImplCopyWith<$Res> {
-  factory _$$AuthLoadingImplCopyWith(
-          _$AuthLoadingImpl value, $Res Function(_$AuthLoadingImpl) then) =
-      __$$AuthLoadingImplCopyWithImpl<$Res>;
+abstract class _$$ChatLoadingImplCopyWith<$Res> {
+  factory _$$ChatLoadingImplCopyWith(
+          _$ChatLoadingImpl value, $Res Function(_$ChatLoadingImpl) then) =
+      __$$ChatLoadingImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthLoadingImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthLoadingImpl>
-    implements _$$AuthLoadingImplCopyWith<$Res> {
-  __$$AuthLoadingImplCopyWithImpl(
-      _$AuthLoadingImpl _value, $Res Function(_$AuthLoadingImpl) _then)
+class __$$ChatLoadingImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatLoadingImpl>
+    implements _$$ChatLoadingImplCopyWith<$Res> {
+  __$$ChatLoadingImplCopyWithImpl(
+      _$ChatLoadingImpl _value, $Res Function(_$ChatLoadingImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AuthLoadingImpl implements AuthLoading {
-  const _$AuthLoadingImpl();
+class _$ChatLoadingImpl implements _ChatLoading {
+  const _$ChatLoadingImpl();
 
   @override
   String toString() {
-    return 'AuthState.loading()';
+    return 'ChatState.loading()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AuthLoadingImpl);
+        (other.runtimeType == runtimeType && other is _$ChatLoadingImpl);
   }
 
   @override
@@ -239,7 +239,7 @@ class _$AuthLoadingImpl implements AuthLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -250,7 +250,7 @@ class _$AuthLoadingImpl implements AuthLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? success,
+    TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -261,7 +261,7 @@ class _$AuthLoadingImpl implements AuthLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -274,10 +274,10 @@ class _$AuthLoadingImpl implements AuthLoading {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitial value) initial,
-    required TResult Function(AuthLoading value) loading,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthFailure value) failure,
+    required TResult Function(_ChatInitial value) initial,
+    required TResult Function(_ChatLoading value) loading,
+    required TResult Function(_ChatSuccess value) success,
+    required TResult Function(_ChatFailure value) failure,
   }) {
     return loading(this);
   }
@@ -285,10 +285,10 @@ class _$AuthLoadingImpl implements AuthLoading {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitial value)? initial,
-    TResult? Function(AuthLoading value)? loading,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthFailure value)? failure,
+    TResult? Function(_ChatInitial value)? initial,
+    TResult? Function(_ChatLoading value)? loading,
+    TResult? Function(_ChatSuccess value)? success,
+    TResult? Function(_ChatFailure value)? failure,
   }) {
     return loading?.call(this);
   }
@@ -296,10 +296,10 @@ class _$AuthLoadingImpl implements AuthLoading {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitial value)? initial,
-    TResult Function(AuthLoading value)? loading,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthFailure value)? failure,
+    TResult Function(_ChatInitial value)? initial,
+    TResult Function(_ChatLoading value)? loading,
+    TResult Function(_ChatSuccess value)? success,
+    TResult Function(_ChatFailure value)? failure,
     required TResult orElse(),
   }) {
     if (loading != null) {
@@ -309,80 +309,54 @@ class _$AuthLoadingImpl implements AuthLoading {
   }
 }
 
-abstract class AuthLoading implements AuthState {
-  const factory AuthLoading() = _$AuthLoadingImpl;
+abstract class _ChatLoading implements ChatState {
+  const factory _ChatLoading() = _$ChatLoadingImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthSuccessImplCopyWith<$Res> {
-  factory _$$AuthSuccessImplCopyWith(
-          _$AuthSuccessImpl value, $Res Function(_$AuthSuccessImpl) then) =
-      __$$AuthSuccessImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String token});
+abstract class _$$ChatSuccessImplCopyWith<$Res> {
+  factory _$$ChatSuccessImplCopyWith(
+          _$ChatSuccessImpl value, $Res Function(_$ChatSuccessImpl) then) =
+      __$$ChatSuccessImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AuthSuccessImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthSuccessImpl>
-    implements _$$AuthSuccessImplCopyWith<$Res> {
-  __$$AuthSuccessImplCopyWithImpl(
-      _$AuthSuccessImpl _value, $Res Function(_$AuthSuccessImpl) _then)
+class __$$ChatSuccessImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatSuccessImpl>
+    implements _$$ChatSuccessImplCopyWith<$Res> {
+  __$$ChatSuccessImplCopyWithImpl(
+      _$ChatSuccessImpl _value, $Res Function(_$ChatSuccessImpl) _then)
       : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? token = null,
-  }) {
-    return _then(_$AuthSuccessImpl(
-      null == token
-          ? _value.token
-          : token // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
 }
 
 /// @nodoc
 
-class _$AuthSuccessImpl implements AuthSuccess {
-  const _$AuthSuccessImpl(this.token);
-
-  @override
-  final String token;
+class _$ChatSuccessImpl implements _ChatSuccess {
+  const _$ChatSuccessImpl();
 
   @override
   String toString() {
-    return 'AuthState.success(token: $token)';
+    return 'ChatState.success()';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AuthSuccessImpl &&
-            (identical(other.token, token) || other.token == token));
+        (other.runtimeType == runtimeType && other is _$ChatSuccessImpl);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, token);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
-      __$$AuthSuccessImplCopyWithImpl<_$AuthSuccessImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
-    return success(token);
+    return success();
   }
 
   @override
@@ -390,10 +364,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? success,
+    TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
-    return success?.call(token);
+    return success?.call();
   }
 
   @override
@@ -401,12 +375,12 @@ class _$AuthSuccessImpl implements AuthSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(token);
+      return success();
     }
     return orElse();
   }
@@ -414,10 +388,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitial value) initial,
-    required TResult Function(AuthLoading value) loading,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthFailure value) failure,
+    required TResult Function(_ChatInitial value) initial,
+    required TResult Function(_ChatLoading value) loading,
+    required TResult Function(_ChatSuccess value) success,
+    required TResult Function(_ChatFailure value) failure,
   }) {
     return success(this);
   }
@@ -425,10 +399,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitial value)? initial,
-    TResult? Function(AuthLoading value)? loading,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthFailure value)? failure,
+    TResult? Function(_ChatInitial value)? initial,
+    TResult? Function(_ChatLoading value)? loading,
+    TResult? Function(_ChatSuccess value)? success,
+    TResult? Function(_ChatFailure value)? failure,
   }) {
     return success?.call(this);
   }
@@ -436,10 +410,10 @@ class _$AuthSuccessImpl implements AuthSuccess {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitial value)? initial,
-    TResult Function(AuthLoading value)? loading,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthFailure value)? failure,
+    TResult Function(_ChatInitial value)? initial,
+    TResult Function(_ChatLoading value)? loading,
+    TResult Function(_ChatSuccess value)? success,
+    TResult Function(_ChatFailure value)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
@@ -449,30 +423,25 @@ class _$AuthSuccessImpl implements AuthSuccess {
   }
 }
 
-abstract class AuthSuccess implements AuthState {
-  const factory AuthSuccess(final String token) = _$AuthSuccessImpl;
-
-  String get token;
-  @JsonKey(ignore: true)
-  _$$AuthSuccessImplCopyWith<_$AuthSuccessImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+abstract class _ChatSuccess implements ChatState {
+  const factory _ChatSuccess() = _$ChatSuccessImpl;
 }
 
 /// @nodoc
-abstract class _$$AuthFailureImplCopyWith<$Res> {
-  factory _$$AuthFailureImplCopyWith(
-          _$AuthFailureImpl value, $Res Function(_$AuthFailureImpl) then) =
-      __$$AuthFailureImplCopyWithImpl<$Res>;
+abstract class _$$ChatFailureImplCopyWith<$Res> {
+  factory _$$ChatFailureImplCopyWith(
+          _$ChatFailureImpl value, $Res Function(_$ChatFailureImpl) then) =
+      __$$ChatFailureImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$AuthFailureImplCopyWithImpl<$Res>
-    extends _$AuthStateCopyWithImpl<$Res, _$AuthFailureImpl>
-    implements _$$AuthFailureImplCopyWith<$Res> {
-  __$$AuthFailureImplCopyWithImpl(
-      _$AuthFailureImpl _value, $Res Function(_$AuthFailureImpl) _then)
+class __$$ChatFailureImplCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res, _$ChatFailureImpl>
+    implements _$$ChatFailureImplCopyWith<$Res> {
+  __$$ChatFailureImplCopyWithImpl(
+      _$ChatFailureImpl _value, $Res Function(_$ChatFailureImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -480,7 +449,7 @@ class __$$AuthFailureImplCopyWithImpl<$Res>
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$AuthFailureImpl(
+    return _then(_$ChatFailureImpl(
       null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -491,22 +460,22 @@ class __$$AuthFailureImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$AuthFailureImpl implements AuthFailure {
-  const _$AuthFailureImpl(this.error);
+class _$ChatFailureImpl implements _ChatFailure {
+  const _$ChatFailureImpl(this.error);
 
   @override
   final String error;
 
   @override
   String toString() {
-    return 'AuthState.failure(error: $error)';
+    return 'ChatState.failure(error: $error)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AuthFailureImpl &&
+            other is _$ChatFailureImpl &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -516,15 +485,15 @@ class _$AuthFailureImpl implements AuthFailure {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$AuthFailureImplCopyWith<_$AuthFailureImpl> get copyWith =>
-      __$$AuthFailureImplCopyWithImpl<_$AuthFailureImpl>(this, _$identity);
+  _$$ChatFailureImplCopyWith<_$ChatFailureImpl> get copyWith =>
+      __$$ChatFailureImplCopyWithImpl<_$ChatFailureImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(String token) success,
+    required TResult Function() success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -535,7 +504,7 @@ class _$AuthFailureImpl implements AuthFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(String token)? success,
+    TResult? Function()? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -546,7 +515,7 @@ class _$AuthFailureImpl implements AuthFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(String token)? success,
+    TResult Function()? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -559,10 +528,10 @@ class _$AuthFailureImpl implements AuthFailure {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(AuthInitial value) initial,
-    required TResult Function(AuthLoading value) loading,
-    required TResult Function(AuthSuccess value) success,
-    required TResult Function(AuthFailure value) failure,
+    required TResult Function(_ChatInitial value) initial,
+    required TResult Function(_ChatLoading value) loading,
+    required TResult Function(_ChatSuccess value) success,
+    required TResult Function(_ChatFailure value) failure,
   }) {
     return failure(this);
   }
@@ -570,10 +539,10 @@ class _$AuthFailureImpl implements AuthFailure {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(AuthInitial value)? initial,
-    TResult? Function(AuthLoading value)? loading,
-    TResult? Function(AuthSuccess value)? success,
-    TResult? Function(AuthFailure value)? failure,
+    TResult? Function(_ChatInitial value)? initial,
+    TResult? Function(_ChatLoading value)? loading,
+    TResult? Function(_ChatSuccess value)? success,
+    TResult? Function(_ChatFailure value)? failure,
   }) {
     return failure?.call(this);
   }
@@ -581,10 +550,10 @@ class _$AuthFailureImpl implements AuthFailure {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(AuthInitial value)? initial,
-    TResult Function(AuthLoading value)? loading,
-    TResult Function(AuthSuccess value)? success,
-    TResult Function(AuthFailure value)? failure,
+    TResult Function(_ChatInitial value)? initial,
+    TResult Function(_ChatLoading value)? loading,
+    TResult Function(_ChatSuccess value)? success,
+    TResult Function(_ChatFailure value)? failure,
     required TResult orElse(),
   }) {
     if (failure != null) {
@@ -594,11 +563,11 @@ class _$AuthFailureImpl implements AuthFailure {
   }
 }
 
-abstract class AuthFailure implements AuthState {
-  const factory AuthFailure(final String error) = _$AuthFailureImpl;
+abstract class _ChatFailure implements ChatState {
+  const factory _ChatFailure(final String error) = _$ChatFailureImpl;
 
   String get error;
   @JsonKey(ignore: true)
-  _$$AuthFailureImplCopyWith<_$AuthFailureImpl> get copyWith =>
+  _$$ChatFailureImplCopyWith<_$ChatFailureImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

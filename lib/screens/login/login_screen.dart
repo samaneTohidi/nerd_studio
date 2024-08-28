@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nerd_studio/screens/chat_screen/cubit/chat_cubit.dart';
 import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
 import 'package:nerd_studio/screens/sign_up/cubit/sign_up_cubit.dart';
 
-import '../home_screen.dart';
+import '../chat_screen/chat_screen.dart';
 import '../sign_up/sign_up_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -20,7 +21,10 @@ class LoginScreen extends StatelessWidget {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeScreen(userData: userData),
+                builder: (context) => BlocProvider(
+                  create: (context) => ChatCubit(),
+                  child: ChatScreen(userData: userData),
+                ),
               ),
             );
           },
@@ -49,8 +53,7 @@ class LoginScreen extends StatelessWidget {
   Widget _buildUi(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).colorScheme.background,
-      body:
-      Padding(
+      body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +127,7 @@ class LoginScreen extends StatelessWidget {
                         MaterialPageRoute(
                             builder: (context) => BlocProvider(
                                   create: (context) => SignUpCubit(),
-                                  child:  SignUpScreen(),
+                                  child: SignUpScreen(),
                                 )));
                     // Navigate to Sign Up screen
                   },

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:nerd_studio/screens/chat_screen/cubit/chat_cubit.dart';
 import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
 import 'package:nerd_studio/screens/login/login_screen.dart';
 import 'package:nerd_studio/screens/sign_up/cubit/sign_up_cubit.dart';
 
-import '../home_screen.dart';
+import '../chat_screen/chat_screen.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({super.key});
@@ -20,12 +21,14 @@ class SignUpScreen extends StatelessWidget {
       listener: (context, state) {
         state.maybeWhen(
           success: (response) {
-            // Navigate to HomeScreen if login is successful
             print('response is ${response.message}');
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => HomeScreen(userData: response.workspace.user),
+                builder: (context) => BlocProvider(
+                  create: (context) => ChatCubit(),
+                  child: ChatScreen(userData: response.workspace.user),
+                ),
               ),
             );
           },
