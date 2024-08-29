@@ -2,8 +2,10 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart' show Firebase;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:nerd_studio/screens/login/cubit/login_cubit.dart';
-import 'package:nerd_studio/screens/login/login_screen.dart';
+import 'package:nerd_studio/features/auth/presentation/cubits/login_cubit.dart';
+
+
+import 'features/auth/presentation/pages/login_screen.dart';
 import 'firebase_options.dart';
 
 
