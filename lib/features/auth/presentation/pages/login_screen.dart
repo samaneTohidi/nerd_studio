@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../cubits/chat_cubit.dart';
+import '../../../chat_bot/peresentation/cubits/chat_cubit.dart';
 import '../cubits/login_cubit.dart';
 import '../cubits/sign_up_cubit.dart';
-import 'chat_screen.dart';
+import '../../../chat_bot/peresentation/pages/chat_screen.dart';
 import 'sign_up_screen.dart';
 
 
@@ -24,7 +24,7 @@ class LoginScreen extends StatelessWidget {
               MaterialPageRoute(
                 builder: (context) => BlocProvider(
                   create: (context) => ChatCubit(),
-                  child: ChatScreen(userData: userData),
+                  child: ChatScreen(),
                 ),
               ),
             );

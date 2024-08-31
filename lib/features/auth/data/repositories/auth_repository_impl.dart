@@ -18,6 +18,7 @@ class AuthRepositoryImpl implements AuthRepository {
 
   AuthRepositoryImpl({required this.dioClient});
 
+  @override
   Future<RegisterModel?> registerUser(
       String email, String username, String password) async {
     try {
@@ -55,6 +56,8 @@ class AuthRepositoryImpl implements AuthRepository {
       user: _mapToUserModel(model.workspace.user),
     );
   }
+
+  @override
   Future<void> confirmRegistration(String token, String email) async {
     try {
       final response = await dioClient.dio.post(
@@ -80,9 +83,6 @@ class AuthRepositoryImpl implements AuthRepository {
       _validateResponse(response);
 
       final loginResponse = LoginResponseModel.fromJson(response.data);
-
-      _saveAuthToken(loginResponse.accessToken);
-
       return _mapToUserModel(loginResponse.workspace.user);
     } on DioException catch (e) {
       _handleDioError(e);
@@ -125,15 +125,7 @@ class AuthRepositoryImpl implements AuthRepository {
     }
   }
 
-  Future<void> _saveAuthToken(String? accessToken) async {
-    if (accessToken == null) {
-      throw Exception('Access token is null');
-    }
 
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('auth_token', accessToken);
-    dioClient.dio.options.headers['Authorization'] = 'Bearer $accessToken';
-  }
 
   void _handleDioError(DioException e) {
     if (e.response != null) {

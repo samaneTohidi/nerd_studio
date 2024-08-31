@@ -20,7 +20,7 @@ mixin _$ChatState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AiWriterModel aiWriterModel) success,
     required TResult Function(String error) failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$ChatState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AiWriterModel aiWriterModel)? success,
     TResult? Function(String error)? failure,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$ChatState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AiWriterModel aiWriterModel)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$ChatInitialImpl implements _ChatInitial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AiWriterModel aiWriterModel) success,
     required TResult Function(String error) failure,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$ChatInitialImpl implements _ChatInitial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AiWriterModel aiWriterModel)? success,
     TResult? Function(String error)? failure,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$ChatInitialImpl implements _ChatInitial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AiWriterModel aiWriterModel)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -239,7 +239,7 @@ class _$ChatLoadingImpl implements _ChatLoading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AiWriterModel aiWriterModel) success,
     required TResult Function(String error) failure,
   }) {
     return loading();
@@ -250,7 +250,7 @@ class _$ChatLoadingImpl implements _ChatLoading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AiWriterModel aiWriterModel)? success,
     TResult? Function(String error)? failure,
   }) {
     return loading?.call();
@@ -261,7 +261,7 @@ class _$ChatLoadingImpl implements _ChatLoading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AiWriterModel aiWriterModel)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
@@ -318,6 +318,8 @@ abstract class _$$ChatSuccessImplCopyWith<$Res> {
   factory _$$ChatSuccessImplCopyWith(
           _$ChatSuccessImpl value, $Res Function(_$ChatSuccessImpl) then) =
       __$$ChatSuccessImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({AiWriterModel aiWriterModel});
 }
 
 /// @nodoc
@@ -327,36 +329,61 @@ class __$$ChatSuccessImplCopyWithImpl<$Res>
   __$$ChatSuccessImplCopyWithImpl(
       _$ChatSuccessImpl _value, $Res Function(_$ChatSuccessImpl) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? aiWriterModel = null,
+  }) {
+    return _then(_$ChatSuccessImpl(
+      null == aiWriterModel
+          ? _value.aiWriterModel
+          : aiWriterModel // ignore: cast_nullable_to_non_nullable
+              as AiWriterModel,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$ChatSuccessImpl implements _ChatSuccess {
-  const _$ChatSuccessImpl();
+  const _$ChatSuccessImpl(this.aiWriterModel);
+
+  @override
+  final AiWriterModel aiWriterModel;
 
   @override
   String toString() {
-    return 'ChatState.success()';
+    return 'ChatState.success(aiWriterModel: $aiWriterModel)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ChatSuccessImpl);
+        (other.runtimeType == runtimeType &&
+            other is _$ChatSuccessImpl &&
+            (identical(other.aiWriterModel, aiWriterModel) ||
+                other.aiWriterModel == aiWriterModel));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, aiWriterModel);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ChatSuccessImplCopyWith<_$ChatSuccessImpl> get copyWith =>
+      __$$ChatSuccessImplCopyWithImpl<_$ChatSuccessImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AiWriterModel aiWriterModel) success,
     required TResult Function(String error) failure,
   }) {
-    return success();
+    return success(aiWriterModel);
   }
 
   @override
@@ -364,10 +391,10 @@ class _$ChatSuccessImpl implements _ChatSuccess {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AiWriterModel aiWriterModel)? success,
     TResult? Function(String error)? failure,
   }) {
-    return success?.call();
+    return success?.call(aiWriterModel);
   }
 
   @override
@@ -375,12 +402,12 @@ class _$ChatSuccessImpl implements _ChatSuccess {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AiWriterModel aiWriterModel)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success();
+      return success(aiWriterModel);
     }
     return orElse();
   }
@@ -424,7 +451,13 @@ class _$ChatSuccessImpl implements _ChatSuccess {
 }
 
 abstract class _ChatSuccess implements ChatState {
-  const factory _ChatSuccess() = _$ChatSuccessImpl;
+  const factory _ChatSuccess(final AiWriterModel aiWriterModel) =
+      _$ChatSuccessImpl;
+
+  AiWriterModel get aiWriterModel;
+  @JsonKey(ignore: true)
+  _$$ChatSuccessImplCopyWith<_$ChatSuccessImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -493,7 +526,7 @@ class _$ChatFailureImpl implements _ChatFailure {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function() success,
+    required TResult Function(AiWriterModel aiWriterModel) success,
     required TResult Function(String error) failure,
   }) {
     return failure(error);
@@ -504,7 +537,7 @@ class _$ChatFailureImpl implements _ChatFailure {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function()? success,
+    TResult? Function(AiWriterModel aiWriterModel)? success,
     TResult? Function(String error)? failure,
   }) {
     return failure?.call(error);
@@ -515,7 +548,7 @@ class _$ChatFailureImpl implements _ChatFailure {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function()? success,
+    TResult Function(AiWriterModel aiWriterModel)? success,
     TResult Function(String error)? failure,
     required TResult orElse(),
   }) {
